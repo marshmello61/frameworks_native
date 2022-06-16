@@ -215,6 +215,9 @@ private:
     public:
         static constexpr auto HISTORY_SIZE = 30;
         static constexpr std::chrono::nanoseconds HISTORY_DURATION = 300ms;
+        
+        static constexpr auto HISTORY_SIZE_MAX = 90;
+        static constexpr std::chrono::nanoseconds HISTORY_DURATION_MAX = 2s;
 
         RefreshRateHistory(const std::string& name) : mName(name) {}
 
@@ -287,7 +290,10 @@ private:
     std::chrono::time_point<std::chrono::steady_clock> mFrameTimeValidSince =
             std::chrono::steady_clock::now();
     static constexpr size_t HISTORY_SIZE = RefreshRateHistory::HISTORY_SIZE;
-    static constexpr std::chrono::nanoseconds HISTORY_DURATION = 1s;
+    static constexpr std::chrono::nanoseconds HISTORY_DURATION = RefreshRateHistory::HISTORY_DURATION;
+
+    static constexpr size_t HISTORY_SIZE_MAX = RefreshRateHistory::HISTORY_SIZE_MAX;
+    static constexpr std::chrono::nanoseconds HISTORY_DURATION_MAX = RefreshRateHistory::HISTORY_DURATION_MAX;
 
     LayerProps mLayerProps;
 

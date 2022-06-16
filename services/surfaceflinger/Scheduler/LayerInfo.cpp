@@ -60,7 +60,7 @@ void LayerInfo::setLastPresentTime(nsecs_t lastPresentTime, nsecs_t now, LayerUp
                                        .queueTime = mLastUpdatedTime,
                                        .pendingModeChange = pendingModeChange};
             mFrameTimes.push_back(frameTime);
-            if (mFrameTimes.size() > HISTORY_SIZE) {
+            if (mFrameTimes.size() > HISTORY_SIZE_MAX) {
                 mFrameTimes.pop_front();
             }
             break;
@@ -276,8 +276,8 @@ void LayerInfo::RefreshRateHistory::clear() {
 
 bool LayerInfo::RefreshRateHistory::add(Fps refreshRate, nsecs_t now) {
     mRefreshRates.push_back({refreshRate, now});
-    while (mRefreshRates.size() >= HISTORY_SIZE ||
-           now - mRefreshRates.front().timestamp > HISTORY_DURATION.count()) {
+    while (mRefreshRates.size() >= HISTORY_SIZE_MAX ||
+           now - mRefreshRates.front().timestamp > HISTORY_DURATION_MAX.count()) {
         mRefreshRates.pop_front();
     }
 
