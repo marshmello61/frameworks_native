@@ -290,10 +290,10 @@ private:
     std::chrono::time_point<std::chrono::steady_clock> mFrameTimeValidSince =
             std::chrono::steady_clock::now();
     static constexpr size_t HISTORY_SIZE = RefreshRateHistory::HISTORY_SIZE;
-    static constexpr std::chrono::nanoseconds HISTORY_DURATION = RefreshRateHistory::HISTORY_DURATION;
+    static constexpr std::chrono::nanoseconds HISTORY_DURATION = 150ms;
 
     static constexpr size_t HISTORY_SIZE_MAX = RefreshRateHistory::HISTORY_SIZE_MAX;
-    static constexpr std::chrono::nanoseconds HISTORY_DURATION_MAX = RefreshRateHistory::HISTORY_DURATION_MAX;
+    static constexpr std::chrono::nanoseconds HISTORY_DURATION_MAX = 1s;
 
     LayerProps mLayerProps;
 
